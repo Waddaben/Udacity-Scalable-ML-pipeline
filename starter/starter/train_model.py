@@ -1,13 +1,16 @@
 # Script to train machine learning model.
 
 from sklearn.model_selection import train_test_split
-import numpy as np
-import pandas as pd
+
 
 # Add the necessary imports for the starter code.
+import pandas as pd
+from ml.data import process_data
+from ml.model import train_model
 
-data_path = "starter/data/census.csv"
+
 # load in the data from path into a pandas dataframe.
+data_path = "starter/data/census.csv"
 data = pd.read_csv(data_path)
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
