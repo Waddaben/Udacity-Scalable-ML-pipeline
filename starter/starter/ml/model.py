@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 
 # Optional: implement hyperparameter tuning.
-def train_model(X_train, y_train):
+def train_model(X_train, y_train, random_state=42):
     """
     Trains a machine learning model and returns it.
 
@@ -21,7 +21,7 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # use X_train and y_train to train a random forest classifier.
-    model = RandomForestClassifier()
+    model = RandomForestClassifier(random_state)
     model.fit(X_train, y_train)
     return model
 

@@ -5,7 +5,7 @@
 - The model was developed for the Udacity ML DevOps Nanodegree
 - Created on 5th of October 2022
 - Version 1.0
-- Random forest classifier from sklearn.
+- Random forest classifier from sklearn with a random state of 42 and default hyperparamaters
 - From <https://medium.com/analytics-vidhya/adult-census-income-dataset-using-multiple-machine-learning-models-f289c960005d> it was decided to use a random forest classifier
 - Model was trained and evaluated on 10 different splits of which the split yielding the best model was used for the final model.
 
