@@ -1,9 +1,6 @@
-import os
-import sys
-import os
-import inspect
-import requests
-
+"""
+This file is used for testing the test_api.py file.
+"""
 from fastapi.testclient import TestClient
 
 # Import our app from main.py.
@@ -14,10 +11,16 @@ client = TestClient(app)
 
 # Write tests using the same syntax as with the requests module.
 def test_api_locally_get_root():
-    r = client.get("/")
-    assert r.status_code == 200
+    """
+    This function test the get
+    """
+    request = client.get("/")
+    assert request.status_code == 200
 
 def test_predict_1():
+    """
+    This function test the post
+    """
     # get the client to make a post request to the /predict endpoint
     response = client.post(
         "/predict",
@@ -36,7 +39,7 @@ def test_predict_1():
             "capital-loss": 0,
             "hours-per-week": 80,
             "native-country": "Cuba",
-        }   
+        }
     )
     # print the response
     print(response.json())
@@ -44,6 +47,9 @@ def test_predict_1():
     assert response.json() == {"prediction": "Income < 50k"}
 
 def test_predict_2():
+    """
+    This function test the post
+    """
     # get the client to make a post request to the /predict endpoint
     response = client.post(
         "/predict",
@@ -62,7 +68,7 @@ def test_predict_2():
             "capital-loss": 0,
             "hours-per-week": 40,
             "native-country": "United-States",
-        }   
+        }
     )
     # print the response
     print(response.json())
@@ -70,6 +76,9 @@ def test_predict_2():
     assert response.json() == {"prediction": "Income < 50k"}
 
 def test_predict_3():
+    """
+    This function test the post
+    """
     # get the client to make a post request to the /predict endpoint
     response = client.post(
         "/predict",
@@ -88,7 +97,7 @@ def test_predict_3():
             "capital-loss": 0,
             "hours-per-week": 13,
             "native-country": "United-States",
-        }   
+        }
     )
     # print the response
     print(response.json())
