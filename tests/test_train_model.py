@@ -2,20 +2,27 @@
 This file is used for testing the train_model.py file.
 """
 import os
+import inspect
 import sys
 import pytest
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from starter.ml.model import (
+
+
+
+
+# add the starter directory to the path so we can import the train_model.py file
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+
+from starter.starter.ml.model import (
     train_and_test_on_slices,
     train_model,
     compute_model_metrics,
     inference,
 )
-from starter.ml.data import process_data
-
-# add the starter directory to the path so we can import the train_model.py file
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from starter.starter.ml.data import process_data
 
 # upload the census_cleaned.csv file
 data_path = "starter/data/census_cleaned.csv"
