@@ -6,11 +6,6 @@ import requests
 
 from fastapi.testclient import TestClient
 
-# add the starter directory to the path so we can import the train_model.py file
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-
 # Import our app from main.py.
 from main import app
 

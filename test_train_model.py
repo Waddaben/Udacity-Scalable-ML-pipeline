@@ -8,14 +8,6 @@ import pytest
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
-
-
-
-# add the starter directory to the path so we can import the train_model.py file
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-
 from starter.starter.ml.model import (
     train_model,
     compute_model_metrics,
