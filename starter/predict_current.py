@@ -1,8 +1,9 @@
+"""
+This module is just to test predictions and see outputs
+"""
 import requests
-import json
-import fastapi
 
-url = "http://127.0.0.1:8000/predict"
+URL = "http://127.0.0.1:8000/predict"
 data = {
     "age": 40,
     "workclass": "Private",
@@ -21,7 +22,7 @@ data = {
 }
 
 # request a response from the API using FastAPI
-response = requests.post(url, json=data)
+response = requests.post(URL, json=data, timeout=5)
 
 # print the response
 print(response.json())

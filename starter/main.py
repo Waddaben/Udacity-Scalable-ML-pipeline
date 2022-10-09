@@ -1,15 +1,12 @@
 # Put the code for your API here.
-import os
 import pandas as pd
-import numpy as np
 
 # Import libraries related to fastAPI
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
 
 # Import the inference function to be used to predict the values
-from starter.ml.data import process_data
+from starter.ml.data import process_data 
 from starter.ml.model import inference
 
 cat_features = [

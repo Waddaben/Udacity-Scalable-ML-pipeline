@@ -17,6 +17,7 @@ def test_api_locally_get_root():
     request = client.get("/")
     assert request.status_code == 200
 
+
 def test_predict_1():
     """
     This function test the post
@@ -39,12 +40,13 @@ def test_predict_1():
             "capital-loss": 0,
             "hours-per-week": 80,
             "native-country": "Cuba",
-        }
+        },
     )
     # print the response
     print(response.json())
     assert response.status_code == 200
     assert response.json() == {"prediction": "Income < 50k"}
+
 
 def test_predict_2():
     """
@@ -68,12 +70,13 @@ def test_predict_2():
             "capital-loss": 0,
             "hours-per-week": 40,
             "native-country": "United-States",
-        }
+        },
     )
     # print the response
     print(response.json())
     assert response.status_code == 200
     assert response.json() == {"prediction": "Income < 50k"}
+
 
 def test_predict_3():
     """
@@ -97,7 +100,7 @@ def test_predict_3():
             "capital-loss": 0,
             "hours-per-week": 13,
             "native-country": "United-States",
-        }
+        },
     )
     # print the response
     print(response.json())

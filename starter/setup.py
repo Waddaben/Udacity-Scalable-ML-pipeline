@@ -1,3 +1,6 @@
+"""
+This is a module to test the API
+"""
 import setuptools
 
 setuptools.setup(
