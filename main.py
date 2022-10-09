@@ -6,8 +6,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 # Import the inference function to be used to predict the values
-from starter.ml.data import process_data 
-from starter.ml.model import inference
+from ml.data import process_data 
+from ml.model import inference
 
 cat_features = [
     "workclass",

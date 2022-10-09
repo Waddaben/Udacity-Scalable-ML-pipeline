@@ -4,15 +4,15 @@ This file is used for testing the train_model.py file.
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
-from starter.ml.model import (
+from ml.model import (
     train_model,
     compute_model_metrics,
     inference,
 )
-from starter.ml.data import process_data
+from ml.data import process_data
 
 # upload the census_cleaned.csv file
-DATA_PATH = "../starter/data/census_cleaned.csv"
+DATA_PATH = "data/census_cleaned.csv"
 data = pd.read_csv(DATA_PATH)
 
 cat_features = [

@@ -23,7 +23,7 @@ cat_features = [
 ]
 
 # load in the data from path into a pandas dataframe.
-data_path = "starter/data/census_cleaned.csv"
+data_path = "data/census_cleaned.csv"
 data = pd.read_csv(data_path)
 
 # /////////////// Do procoessing here ///////////////
@@ -82,9 +82,9 @@ final_metrics = pd.DataFrame(
 
 
 # save the model as a pkl file.
-model_path = "starter/model/model.pkl"
-encoder_path = "starter/model/encoder.pkl"
-lb_path = "starter/model/lb.pkl"
+model_path = "model/model.pkl"
+encoder_path = "model/encoder.pkl"
+lb_path = "model/lb.pkl"
 
 pkl.dump(model, open(model_path, "wb"))
 pkl.dump(encoder, open(encoder_path, "wb"))
