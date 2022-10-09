@@ -17,7 +17,6 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 
 from starter.starter.ml.model import (
-    train_and_test_on_slices,
     train_model,
     compute_model_metrics,
     inference,

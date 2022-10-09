@@ -22,7 +22,7 @@ def test_api_locally_get_root():
     r = client.get("/")
     assert r.status_code == 200
 
-def test_predict():
+def test_predict_1():
     # get the client to make a post request to the /predict endpoint
     response = client.post(
         "/predict",
@@ -41,6 +41,58 @@ def test_predict():
             "capital-loss": 0,
             "hours-per-week": 80,
             "native-country": "Cuba",
+        }   
+    )
+    # print the response
+    print(response.json())
+    assert response.status_code == 200
+    assert response.json() == {"prediction": "Income < 50k"}
+
+def test_predict_2():
+    # get the client to make a post request to the /predict endpoint
+    response = client.post(
+        "/predict",
+        json={
+            "age": 39,
+            "workclass": "State-gov",
+            "fnlgt": 77516,
+            "education": "Bachelors",
+            "education-num": 13,
+            "marital-status": "Never-married",
+            "occupation": "Adm-clerical",
+            "relationship": "Not-in-family",
+            "race": "White",
+            "sex": "Male",
+            "capital-gain": 2174,
+            "capital-loss": 0,
+            "hours-per-week": 40,
+            "native-country": "United-States",
+        }   
+    )
+    # print the response
+    print(response.json())
+    assert response.status_code == 200
+    assert response.json() == {"prediction": "Income < 50k"}
+
+def test_predict_3():
+    # get the client to make a post request to the /predict endpoint
+    response = client.post(
+        "/predict",
+        json={
+            "age": 50,
+            "workclass": "Self-emp-not-inc",
+            "fnlgt": 83311,
+            "education": "Bachelors",
+            "education-num": 13,
+            "marital-status": "Married-civ-spouse",
+            "occupation": "Exec-manageria",
+            "relationship": "Husband",
+            "race": "White",
+            "sex": "Male",
+            "capital-gain": 0,
+            "capital-loss": 0,
+            "hours-per-week": 13,
+            "native-country": "United-States",
         }   
     )
     # print the response
