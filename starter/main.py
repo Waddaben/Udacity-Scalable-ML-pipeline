@@ -9,8 +9,8 @@ from pydantic import BaseModel
 from typing import List
 
 # Import the inference function to be used to predict the values
-from starter.starter.ml.data import process_data
-from starter.starter.ml.model import inference
+from starter.ml.data import process_data
+from starter.ml.model import inference
 
 cat_features = [
     "workclass",
@@ -27,8 +27,8 @@ cat_features = [
 app = FastAPI()
 
 # Model that makes predictions
-model = pd.read_pickle(r"starter/model/model.pkl")
-encoder = pd.read_pickle(r"starter/model/encoder.pkl")
+model = pd.read_pickle(r"model/model.pkl")
+encoder = pd.read_pickle(r"model/encoder.pkl")
 
 
 class DataOut(BaseModel):

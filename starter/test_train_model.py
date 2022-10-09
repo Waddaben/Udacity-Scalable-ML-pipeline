@@ -8,15 +8,15 @@ import pytest
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
-from starter.starter.ml.model import (
+from starter.ml.model import (
     train_model,
     compute_model_metrics,
     inference,
 )
-from starter.starter.ml.data import process_data
+from starter.ml.data import process_data
 
 # upload the census_cleaned.csv file
-data_path = "starter/data/census_cleaned.csv"
+data_path = "../starter/data/census_cleaned.csv"
 data = pd.read_csv(data_path)
 
 cat_features = [
@@ -48,10 +48,10 @@ def test_train_model():
     assert model is not None
     # assert a prediction
     # extract the first row of the numpy array data
-    first_row = X_test[0]
+    first_row = X_test[10]
     # shape the data to be in the correct format for the model
     first_row = first_row.reshape(1, -1)
-    assert model.predict(first_row)[0] == 1
+    assert model.predict(first_row)[0] == 0
     assert y_test[0] == 1
 
 
