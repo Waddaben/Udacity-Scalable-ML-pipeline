@@ -6,7 +6,12 @@ import sys
 import pytest
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from starter.ml.model import train_and_test_on_slices, train_model,compute_model_metrics,inference
+from starter.ml.model import (
+    train_and_test_on_slices,
+    train_model,
+    compute_model_metrics,
+    inference,
+)
 from starter.ml.data import process_data
 
 # add the starter directory to the path so we can import the train_model.py file
@@ -32,13 +37,14 @@ X_data, y_data, encoder, lb = process_data(
     data, categorical_features=cat_features, label="salary", training=True
 )
 
+
 def test_train_model():
     """
     Test the model training
     """
     # test the train_model function
     X_train, X_test, y_train, y_test = train_test_split(
-    X_data, y_data, test_size=0.2, random_state=3
+        X_data, y_data, test_size=0.2, random_state=3
     )
     model = train_model(X_train, y_train, random_state=3)
     assert model is not None
@@ -50,10 +56,11 @@ def test_train_model():
     assert model.predict(first_row)[0] == 1
     assert y_test[0] == 1
 
+
 def test_compute_metrics():
     # test the train_model function
     X_train, X_test, y_train, y_test = train_test_split(
-    X_data, y_data, test_size=0.2, random_state=10
+        X_data, y_data, test_size=0.2, random_state=10
     )
     model = train_model(X_train, y_train, random_state=10)
     predictions = model.predict(X_test)
@@ -62,15 +69,14 @@ def test_compute_metrics():
     assert recall >= 0.52
     assert fbeta >= 0.6
 
+
 def test_inference():
     """
     Test the inference function
     """
     # test the train_and_test_on_slices function
     X_train, X_test, y_train, _ = train_test_split(
-    X_data, y_data, test_size=0.2, random_state=10
+        X_data, y_data, test_size=0.2, random_state=10
     )
     model = train_model(X_train, y_train, random_state=10)
     assert all(model.predict(X_test)) == all(inference(model, X_test))
-
-

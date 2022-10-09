@@ -26,7 +26,7 @@ cat_features = [
 data_path = "starter/data/census_cleaned.csv"
 data = pd.read_csv(data_path)
 
-# /////////////// Do prcoessing here ///////////////
+# /////////////// Do procoessing here ///////////////
 X_data, y_data, encoder, lb = process_data(
     data, categorical_features=cat_features, label="salary", training=True
 )
@@ -83,4 +83,9 @@ final_metrics = pd.DataFrame(
 
 # save the model as a pkl file.
 model_path = "starter/model/model.pkl"
+encoder_path = "starter/model/encoder.pkl"
+lb_path = "starter/model/lb.pkl"
+
 pkl.dump(model, open(model_path, "wb"))
+pkl.dump(encoder, open(encoder_path, "wb"))
+pkl.dump(lb, open(lb_path, "wb"))
