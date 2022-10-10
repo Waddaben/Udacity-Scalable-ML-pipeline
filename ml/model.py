@@ -66,12 +66,12 @@ def inference(model, X):
     return preds
 
 
-def train_and_test_on_slices(X_data, y_data, test_size_default=0.2):
+def train_and_test_on_slices(training_datasets, testing_datasets, test_size_default=0.2):
     """
     Write a function that outputs the performance of the model on slices of the data
     Args:
-        X_data (pd.DataFrame): The features of the data.
-        y_data (pd.Series): The labels of the data.
+        training_datasets (pd.DataFrame): The features of the data.
+        testing_datasets (pd.Series): The labels of the data.
     Returns:
     None
     """
@@ -84,7 +84,7 @@ def train_and_test_on_slices(X_data, y_data, test_size_default=0.2):
         print("------------------")
         print(f"Slice {i}:")
         X_train, X_test, y_train, y_test = train_test_split(
-            X_data, y_data, test_size=test_size_default, random_state=i
+            training_datasets, testing_datasets, test_size=test_size_default, random_state=i
         )
         model = train_model(X_train, y_train)
         predictions = model.predict(X_test)

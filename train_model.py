@@ -30,7 +30,7 @@ DATA_PATH = "data/census_cleaned.csv"
 data = pd.read_csv(DATA_PATH)
 
 # /////////////// Do procoessing here ///////////////
-X_data, y_data, encoder, lb = process_data(
+training_datasets, testing_datasets, encoder, lb = process_data(
     data, categorical_features=cat_features, label="salary", training=True
 )
 
@@ -38,7 +38,7 @@ X_data, y_data, encoder, lb = process_data(
 # /////////////// Train model on different splits  ///////////////
 print("------------------")
 metrics_df, metrics_mean = train_and_test_on_slices(
-    X_data, y_data, test_size_default=0.2
+    training_datasets, testing_datasets, test_size_default=0.2
 )
 print("All training metrics gone through")
 print(metrics_df)
@@ -71,7 +71,7 @@ test_size = best_row["test_size"]
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 print("------------------")
 X_train, X_test, y_train, y_test = train_test_split(
-    X_data, y_data, test_size=test_size, random_state=random_state
+    training_datasets, testing_datasets, test_size=test_size, random_state=random_state
 )
 # Train and save a model.
 model = train_model(X_train, y_train)

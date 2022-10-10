@@ -27,7 +27,7 @@ cat_features = [
 ]
 
 # prepare the data
-X_data, y_data, encoder, lb = process_data(
+training_datasets, testing_datasets, encoder, lb = process_data(
     data, categorical_features=cat_features, label="salary", training=True
 )
 
@@ -38,7 +38,7 @@ def test_train_model():
     """
     # test the train_model function
     training_data, testing_data, training_labels, testing_labels = train_test_split(
-        X_data, y_data, test_size=0.2, random_state=3
+        training_datasets, testing_datasets, test_size=0.2, random_state=3
     )
     model = train_model(training_data, training_labels, random_state=3)
     assert model is not None
@@ -57,7 +57,7 @@ def test_compute_metrics():
     """
     # test the train_model function
     training_data, testing_data, training_labels, testing_labels = train_test_split(
-        X_data, y_data, test_size=0.2, random_state=10
+        training_datasets, testing_datasets, test_size=0.2, random_state=10
     )
     model = train_model(training_data, training_labels, random_state=10)
     predictions = model.predict(testing_data)
@@ -73,7 +73,7 @@ def test_inference():
     """
     # test the train_and_test_on_slices function
     training_data, testing_data, training_labels, _ = train_test_split(
-        X_data, y_data, test_size=0.2, random_state=10
+        training_datasets, testing_datasets, test_size=0.2, random_state=10
     )
     model = train_model(training_data, training_labels, random_state=10)
     assert all(model.predict(testing_data)) == all(inference(model, testing_data))
