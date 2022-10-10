@@ -34,7 +34,7 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint -d duplicate-code $(git ls-files '*.py')
 
     - name: Install dependencies
       run: |

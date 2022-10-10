@@ -1,3 +1,4 @@
+# pylint: disable=chained-comparison, too-many-branches, too-many-statements
 """
 This is a sanity check module
 """

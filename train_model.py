@@ -1,3 +1,6 @@
+"""
+This module is for the training of the models
+"""
 # Script to train machine learning model.
 import pickle as pkl
 
@@ -23,8 +26,8 @@ cat_features = [
 ]
 
 # load in the data from path into a pandas dataframe.
-data_path = "data/census_cleaned.csv"
-data = pd.read_csv(data_path)
+DATA_PATH = "data/census_cleaned.csv"
+data = pd.read_csv(DATA_PATH)
 
 # /////////////// Do procoessing here ///////////////
 X_data, y_data, encoder, lb = process_data(
@@ -42,7 +45,9 @@ print(metrics_df)
 print("Mean of all training metrics")
 # format the metrics print to have only 2 decimal places
 print(
-    f"Precision: {metrics_mean['precision']:.2f}, Recall: {metrics_mean['recall']:.2f}, F1: {metrics_mean['f1']:.2f}, Accuracy: {metrics_mean['accuracy']:.2f}"
+    f"Precision: {metrics_mean['precision']:.2f},"
+    + f"Recall: {metrics_mean['recall']:.2f}, F1: {metrics_mean['f1']:.2f},"
+    + f" Accuracy: {metrics_mean['accuracy']:.2f}"
 )
 # find the row with the best f1 score
 best_row = metrics_df.loc[metrics_df["f1"].idxmax()]
@@ -50,7 +55,12 @@ best_row = metrics_df.loc[metrics_df["f1"].idxmax()]
 print("Best row")
 # format the outputs to have only 2 decimal places
 print(
-    f"random_state: {best_row['random_state']}, test_size: {best_row['test_size']}, precision: {best_row['precision']:.2f}, recall: {best_row['recall']:.2f}, f1: {best_row['f1']:.2f}, accuracy: {best_row['accuracy']:.2f}"
+    f"random_state: {best_row['random_state']}"
+    + f"test_size: {best_row['test_size']},"
+    + f" precision: {best_row['precision']:.2f},"
+    + f" recall: {best_row['recall']:.2f},"
+    + f" f1: {best_row['f1']:.2f},"
+    + f" accuracy: {best_row['accuracy']:.2f}"
 )
 # extract the random state and the test size of the best row
 random_state = int(best_row["random_state"])
@@ -82,10 +92,13 @@ final_metrics = pd.DataFrame(
 
 
 # save the model as a pkl file.
-model_path = "model/model.pkl"
-encoder_path = "model/encoder.pkl"
-lb_path = "model/lb.pkl"
+MODEL_PATH = "model/model.pkl"
+ENCODER_PATH = "model/encoder.pkl"
+LB_PATH = "model/lb.pkl"
 
-pkl.dump(model, open(model_path, "wb"))
-pkl.dump(encoder, open(encoder_path, "wb"))
-pkl.dump(lb, open(lb_path, "wb"))
+with open(MODEL_PATH, "wb") as f:
+    pkl.dump(model, f)
+with open(ENCODER_PATH, "wb") as f:
+    pkl.dump(encoder, f)
+with open(LB_PATH, "wb") as f:
+    pkl.dump(lb, f)

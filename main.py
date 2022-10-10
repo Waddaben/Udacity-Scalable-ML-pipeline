@@ -1,12 +1,16 @@
+# pylint: disable=too-few-public-methods
+"""
+This is the main code that works with the API
+"""
 # Put the code for your API here.
 import pandas as pd
 
 # Import libraries related to fastAPI
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel # pylint: disable=no-name-in-module
 
 # Import the inference function to be used to predict the values
-from ml.data import process_data 
+from ml.data import process_data
 from ml.model import inference
 
 cat_features = [
@@ -29,11 +33,17 @@ encoder = pd.read_pickle(r"model/encoder.pkl")
 
 
 class DataOut(BaseModel):
+    """
+    This pydantic class if used for the API output
+    """
     # The expected prediction is <=50K
     prediction: str = "Income < 50k"
 
 
 class DataIn(BaseModel):
+    """
+    This pydantic class if used for the API input
+    """
     # This is the input data to the API
     # Expected prediction = <=50K
     age: int = 28
@@ -55,11 +65,17 @@ class DataIn(BaseModel):
 # Display welcome message using @app.get("/")
 @app.get("/")
 def welcome():
+    """
+    This is the welcoming message
+    """
     return {"message": "Welcome to the starter project"}
 
 
 @app.post("/predict", response_model=DataOut, status_code=200)
 def get_prediction(cencus: DataIn):
+    """
+    This function performs the inference
+    """
     # convert cencus to a dictionary
     cencus = dict(cencus)
 
