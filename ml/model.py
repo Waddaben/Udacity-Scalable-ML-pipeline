@@ -1,3 +1,4 @@
+# pylint: disable=too-many-locals
 """
 This is the docstring for the model
 """
