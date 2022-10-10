@@ -1,3 +1,6 @@
+"""
+This is the docstring for the model
+"""
 import pandas as pd
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
@@ -5,7 +8,7 @@ from sklearn.model_selection import train_test_split
 
 
 # Optional: implement hyperparameter tuning.
-def train_model(X_train, y_train, random_state=42):
+def train_model(training_data, training_labels, random_state=42):
     """
     Trains a machine learning model and returns it.
 
@@ -22,11 +25,11 @@ def train_model(X_train, y_train, random_state=42):
     """
     # use X_train and y_train to train a random forest classifier.
     model = RandomForestClassifier(random_state)
-    model.fit(X_train, y_train)
+    model.fit(training_data, training_labels)
     return model
 
 
-def compute_model_metrics(y, preds):
+def compute_model_metrics(labels, preds):
     """
     Validates the trained machine learning model using precision, recall, and F1.
 
@@ -42,13 +45,13 @@ def compute_model_metrics(y, preds):
     recall : float
     fbeta : float
     """
-    fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
-    precision = precision_score(y, preds, zero_division=1)
-    recall = recall_score(y, preds, zero_division=1)
+    fbeta = fbeta_score(labels, preds, beta=1, zero_division=1)
+    precision = precision_score(labels, preds, zero_division=1)
+    recall = recall_score(labels, preds, zero_division=1)
     return precision, recall, fbeta
 
 
-def inference(model, X):
+def inference(model, data):
     """Run model inferences and return the predictions.
 
     Inputs
@@ -62,7 +65,7 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    preds = model.predict(X)
+    preds = model.predict(data)
     return preds
 
 
@@ -83,13 +86,13 @@ def train_and_test_on_slices(training_datasets, testing_datasets, test_size_defa
         # print that we are on the ith slice
         print("------------------")
         print(f"Slice {i}:")
-        X_train, X_test, y_train, y_test = train_test_split(
+        training_data, testing_data, training_label, testing_label = train_test_split(
             training_datasets, testing_datasets, test_size=test_size_default, random_state=i
         )
-        model = train_model(X_train, y_train)
-        predictions = model.predict(X_test)
-        precision, recall, fbeta = compute_model_metrics(y_test, predictions)
-        print_metrics(precision, recall, fbeta, model.score(X_test, y_test))
+        model = train_model(training_data, training_label)
+        predictions = model.predict(testing_data)
+        precision, recall, fbeta = compute_model_metrics(testing_label, predictions)
+        print_metrics(precision, recall, fbeta, model.score(testing_data, testing_label))
         metrics.append(
             [
                 int(i),
@@ -97,7 +100,7 @@ def train_and_test_on_slices(training_datasets, testing_datasets, test_size_defa
                 precision,
                 recall,
                 fbeta,
-                model.score(X_test, y_test),
+                model.score(testing_data, testing_label),
             ]
         )
     # create a pandase dataframe from the metrics array
