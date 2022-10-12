@@ -3,7 +3,7 @@ This module is just to test predictions and see outputs
 """
 import requests
 
-URL = "http://127.0.0.1:8000/predict"
+URL = "https://income-classifier-udacity.herokuapp.com/predict"
 data = {
     "age": 40,
     "workclass": "Private",
