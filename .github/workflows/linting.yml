@@ -37,11 +37,11 @@ jobs:
       run: |
         pylint -d duplicate-code $(git ls-files '*.py')
 
-    - name: Install dependencies
+    - name: Install flake and pytest dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pytest
 
     - name: Run unit tests
       run: |
