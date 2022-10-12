@@ -27,4 +27,3 @@ response = requests.post(URL, json=data, timeout=5)
 # print the response
 print(f"response.status_code: {response.status_code}")
 print(f"Response from {URL} : {response.json()}")
-
