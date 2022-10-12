@@ -4,6 +4,7 @@ This is the main code that works with the API
 """
 # Put the code for your API here.
 import os
+import sys
 import pandas as pd
 
 # Import libraries related to fastAPI
@@ -33,7 +34,7 @@ app = FastAPI()
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
-        exit("dvc pull failed")
+        sys.exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 # Model that makes predictions
