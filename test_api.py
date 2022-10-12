@@ -16,6 +16,7 @@ def test_api_locally_get_root():
     """
     request = client.get("/")
     assert request.status_code == 200
+    assert request.json() == {"message": "Welcome to the starter project"}
 
 
 def test_predict_1():
