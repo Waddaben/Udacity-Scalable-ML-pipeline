@@ -150,7 +150,7 @@ def evaluate_with_feature_fixed( # pylint: disable=too-many-arguments
     unique_values = training_data[fixed_metric].unique()
 
     # Creating a txt file where we'll write our perfromance results
-    with open(f"performance_{fixed_metric}.txt", "w", encoding="utf-8") as file:
+    with open(f"Sliced_output_{fixed_metric}.txt", "w", encoding="utf-8") as file:
         # Looping through the unique values of the feature of interest
         # Iterating over each slice and calculating the performance metrics
         # create a title for the file
