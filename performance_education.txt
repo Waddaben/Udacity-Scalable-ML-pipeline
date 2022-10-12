@@ -1,0 +1,99 @@
+Performance metrics for education
+----------
+----------
+Bachelors
+Precision: 0.9521444695259593
+Recall: 0.9495722647456101
+fbeta: 0.9508566275924256
+Accuracy: 0.9592903828197946
+----------
+HS-grad
+Precision: 0.9498371335504886
+Recall: 0.8704477611940299
+fbeta: 0.908411214953271
+Accuracy: 0.9720026664127226
+----------
+11th
+Precision: 0.9444444444444444
+Recall: 0.85
+fbeta: 0.8947368421052632
+Accuracy: 0.9897872340425532
+----------
+Masters
+Precision: 0.9557613168724279
+Recall: 0.9687174139728885
+fbeta: 0.9621957534955982
+Accuracy: 0.9576320371445154
+----------
+9th
+Precision: 1.0
+Recall: 0.7777777777777778
+fbeta: 0.8750000000000001
+Accuracy: 0.9883268482490273
+----------
+Some-college
+Precision: 0.95
+Recall: 0.9041095890410958
+fbeta: 0.9264868858514961
+Accuracy: 0.97270607598409
+----------
+Assoc-acdm
+Precision: 0.96
+Recall: 0.9056603773584906
+fbeta: 0.9320388349514563
+Accuracy: 0.9671977507029054
+----------
+Assoc-voc
+Precision: 0.9457142857142857
+Recall: 0.9168975069252078
+fbeta: 0.9310829817158931
+Accuracy: 0.9645441389290883
+----------
+7th-8th
+Precision: 0.972972972972973
+Recall: 0.9
+fbeta: 0.935064935064935
+Accuracy: 0.9922600619195047
+----------
+Doctorate
+Precision: 0.9463722397476341
+Recall: 0.9803921568627451
+fbeta: 0.9630818619582664
+Accuracy: 0.9443099273607748
+----------
+Prof-school
+Precision: 0.9787735849056604
+Recall: 0.9810874704491725
+fbeta: 0.9799291617473436
+Accuracy: 0.9704861111111112
+----------
+5th-6th
+Precision: 1.0
+Recall: 0.875
+fbeta: 0.9333333333333333
+Accuracy: 0.993993993993994
+----------
+10th
+Precision: 0.9636363636363636
+Recall: 0.8548387096774194
+fbeta: 0.905982905982906
+Accuracy: 0.9882100750267953
+----------
+1st-4th
+Precision: 1.0
+Recall: 0.8333333333333334
+fbeta: 0.9090909090909091
+Accuracy: 0.9940476190476191
+----------
+Preschool
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0
+Accuracy: 1.0
+----------
+12th
+Precision: 1.0
+Recall: 0.6666666666666666
+fbeta: 0.8
+Accuracy: 0.9745958429561201
+----------

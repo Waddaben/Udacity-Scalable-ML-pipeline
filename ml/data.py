@@ -7,7 +7,12 @@ from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
 
 def process_data(
-    dataset, categorical_features, label=None, training=True, encoder=None, label_bin=None
+    dataset,
+    categorical_features,
+    label=None,
+    training=True,
+    encoder=None,
+    label_bin=None,
 ):
     """Process the data used in the machine learning pipeline.
 

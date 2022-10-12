@@ -9,7 +9,7 @@ import pandas as pd
 
 # Import libraries related to fastAPI
 from fastapi import FastAPI
-from pydantic import BaseModel # pylint: disable=no-name-in-module
+from pydantic import BaseModel  # pylint: disable=no-name-in-module
 
 # Import the inference function to be used to predict the values
 from ml.data import process_data
@@ -46,6 +46,7 @@ class DataOut(BaseModel):
     """
     This pydantic class if used for the API output
     """
+
     # The expected prediction is <=50K
     prediction: str = "Income < 50k"
 
@@ -54,6 +55,7 @@ class DataIn(BaseModel):
     """
     This pydantic class if used for the API input
     """
+
     # This is the input data to the API
     # Expected prediction = <=50K
     age: int = 28

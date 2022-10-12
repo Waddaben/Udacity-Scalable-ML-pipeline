@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from ml.data import process_data
 
 
 # Optional: implement hyperparameter tuning.
@@ -70,7 +71,9 @@ def inference(model, data):
     return preds
 
 
-def train_and_test_on_slices(training_datasets, testing_datasets, test_size_default=0.2):
+def train_and_test_on_slices(
+    training_datasets, testing_datasets, test_size_default=0.2
+):
     """
     Write a function that outputs the performance of the model on slices of the data
     Args:
@@ -88,12 +91,17 @@ def train_and_test_on_slices(training_datasets, testing_datasets, test_size_defa
         print("------------------")
         print(f"Slice {i}:")
         training_data, testing_data, training_label, testing_label = train_test_split(
-            training_datasets, testing_datasets, test_size=test_size_default, random_state=i
+            training_datasets,
+            testing_datasets,
+            test_size=test_size_default,
+            random_state=i,
         )
         model = train_model(training_data, training_label)
         predictions = model.predict(testing_data)
         precision, recall, fbeta = compute_model_metrics(testing_label, predictions)
-        print_metrics(precision, recall, fbeta, model.score(testing_data, testing_label))
+        print_metrics(
+            precision, recall, fbeta, model.score(testing_data, testing_label)
+        )
         metrics.append(
             [
                 int(i),
@@ -112,6 +120,71 @@ def train_and_test_on_slices(training_datasets, testing_datasets, test_size_defa
     # create a pandase dataframe with the mean of the metrics
     metrics_mean = metrics_df.mean()
     return metrics_df, metrics_mean
+
+
+def evaluate_with_feature_fixed( # pylint: disable=too-many-arguments
+    model, training_data, fixed_metric, cat_features, encoder, label_binarizer
+):
+    """
+    This is a function that computes the performance metrics when
+    the value of a given feature is held fixed
+
+    Inputs
+    ------
+    model : ML model
+        Trained machine learning model.
+    training_data: pd.DataFrame
+        The data to be used for evaluation
+    fixed_metric : str
+        The name of the feature to be held fixed
+    encoder : sklearn.preprocessing.OneHotEncoder
+        The encoder used to encode the categorical features
+    label_binarizer :  sklearn.preprocessing.LabelBinarizer
+        The label binarizer used to binarize the labels
+
+    Returns
+    -------
+    None
+    """
+    # Get the unique values of the feature of interest
+    unique_values = training_data[fixed_metric].unique()
+
+    # Creating a txt file where we'll write our perfromance results
+    with open(f"performance_{fixed_metric}.txt", "w", encoding="utf-8") as file:
+        # Looping through the unique values of the feature of interest
+        # Iterating over each slice and calculating the performance metrics
+        # create a title for the file
+        file.write(f"Performance metrics for {fixed_metric}")
+        file.write("\n")
+        file.write("-" * 10)
+        file.write("\n")
+        file.write("-" * 10)
+        file.write("\n")
+        for fixed_slice in unique_values:
+            file.write(fixed_slice)
+            file.write("\n")
+            metric_fixed_df = training_data.loc[
+                training_data.loc[:, fixed_metric] == fixed_slice, :
+            ]
+            # Process the test data with the process_data function.
+            all_data_processed, all_labels_processed, encoder, label_binarizer = process_data(
+                metric_fixed_df,
+                categorical_features=cat_features,
+                label="salary",
+                training=False,
+                encoder=encoder,
+                label_bin=label_binarizer,
+            )
+            predictions = inference(model, all_data_processed)
+            precision, recall, fbeta = compute_model_metrics(all_labels_processed, predictions)
+            # Write the metrics to the file
+            file.write(f"Precision: {precision}\n")
+            file.write(f"Recall: {recall}\n")
+            file.write(f"fbeta: {fbeta}\n")
+            file.write(f"Accuracy: {model.score(all_data_processed, all_labels_processed)}\n")
+            file.write("-" * 10)
+            file.write("\n")
+        file.close()
 
 
 def print_metrics(precision, recall, fbeta, accuracy):

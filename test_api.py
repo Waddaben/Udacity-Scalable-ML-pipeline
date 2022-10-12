@@ -46,7 +46,7 @@ def test_predict_1():
     # print the response
     print(response.json())
     assert response.status_code == 200
-    assert response.json() == {"prediction": "Income < 50k"}
+    assert response.json() == {"prediction": "Income > 50k"}
 
 
 def test_predict_2():

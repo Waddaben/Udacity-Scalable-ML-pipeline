@@ -12,6 +12,7 @@ from ml.model import (
     compute_model_metrics,
     train_and_test_on_slices,
     print_metrics,
+    evaluate_with_feature_fixed,
 )
 
 cat_features = [
@@ -30,7 +31,7 @@ DATA_PATH = "data/census_cleaned.csv"
 data = pd.read_csv(DATA_PATH)
 
 # /////////////// Do procoessing here ///////////////
-training_datasets, testing_datasets, encoder, lb = process_data(
+all_data_processed, all_labels_processed, encoder, label_binarizer = process_data(
     data, categorical_features=cat_features, label="salary", training=True
 )
 
@@ -38,7 +39,7 @@ training_datasets, testing_datasets, encoder, lb = process_data(
 # /////////////// Train model on different splits  ///////////////
 print("------------------")
 metrics_df, metrics_mean = train_and_test_on_slices(
-    training_datasets, testing_datasets, test_size_default=0.2
+    all_data_processed, all_labels_processed, test_size_default=0.2
 )
 print("All training metrics gone through")
 print(metrics_df)
@@ -70,20 +71,31 @@ test_size = best_row["test_size"]
 # ///////////// Create final model with best split ///////////////////////
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 print("------------------")
-X_train, X_test, y_train, y_test = train_test_split(
-    training_datasets, testing_datasets, test_size=test_size, random_state=random_state
+training_data, testing_data, training_labels, testing_labels = train_test_split(
+    all_data_processed,
+    all_labels_processed,
+    test_size=test_size,
+    random_state=random_state,
 )
+
 # Train and save a model.
-model = train_model(X_train, y_train)
+model = train_model(training_data, training_labels)
+
+# evaluate the model using fixed features
+fixed_features = ["education", "occupation"]
+for feature in fixed_features:
+    evaluate_with_feature_fixed(  # pylint: disable=too-many-arguments
+        model, data, feature, cat_features, encoder, label_binarizer
+    )
 # evaulate model
 # create a list of predictions from the model
 print("------------------")
-predictions = model.predict(X_test)
-precision, recall, fbeta = compute_model_metrics(y_test, predictions)
+predictions = model.predict(testing_data)
+precision, recall, fbeta = compute_model_metrics(testing_labels, predictions)
 print("Final model metrics")
-print_metrics(precision, recall, fbeta, model.score(X_test, y_test))
+print_metrics(precision, recall, fbeta, model.score(testing_data, testing_labels))
 final_metrics = pd.DataFrame(
-    [[precision, recall, fbeta, model.score(X_test, y_test)]],
+    [[precision, recall, fbeta, model.score(testing_data, testing_labels)]],
     columns=["precision", "recall", "f1", "accuracy"],
 )
 
@@ -101,4 +113,4 @@ with open(MODEL_PATH, "wb") as f:
 with open(ENCODER_PATH, "wb") as f:
     pkl.dump(encoder, f)
 with open(LB_PATH, "wb") as f:
-    pkl.dump(lb, f)
+    pkl.dump(label_binarizer, f)

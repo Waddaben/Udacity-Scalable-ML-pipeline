@@ -3,6 +3,7 @@ This file is used for testing the train_model.py file.
 """
 from sklearn.model_selection import train_test_split
 import pandas as pd
+import numpy as np
 
 from ml.model import (
     train_model,
@@ -47,7 +48,8 @@ def test_train_model():
     first_row = testing_data[10]
     # shape the data to be in the correct format for the model
     first_row = first_row.reshape(1, -1)
-    assert model.predict(first_row)[0] == 0
+    # print the type that the prediction output os
+    assert isinstance(model.predict(first_row)[0], np.int64)
     assert testing_labels[0] == 1
 
 

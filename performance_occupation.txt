@@ -1,0 +1,93 @@
+Performance metrics for occupation
+----------
+----------
+Adm-clerical
+Precision: 0.9422680412371134
+Recall: 0.9013806706114399
+fbeta: 0.9213709677419354
+Accuracy: 0.9793103448275862
+----------
+Exec-managerial
+Precision: 0.954248366013072
+Recall: 0.9644308943089431
+fbeta: 0.9593126105635583
+Accuracy: 0.9604033448106247
+----------
+Handlers-cleaners
+Precision: 0.9577464788732394
+Recall: 0.7906976744186046
+fbeta: 0.8662420382165605
+Accuracy: 0.9846715328467154
+----------
+Prof-specialty
+Precision: 0.953763440860215
+Recall: 0.9542764927380312
+fbeta: 0.954019897821995
+Accuracy: 0.9586956521739131
+----------
+Other-service
+Precision: 0.9747899159663865
+Recall: 0.8467153284671532
+fbeta: 0.90625
+Accuracy: 0.9927162367223066
+----------
+Sales
+Precision: 0.9526372443487621
+Recall: 0.9003051881993896
+fbeta: 0.9257322175732219
+Accuracy: 0.9610958904109589
+----------
+Craft-repair
+Precision: 0.9463243873978997
+Recall: 0.8729817007534983
+fbeta: 0.9081746920492721
+Accuracy: 0.9599902415223225
+----------
+Transport-moving
+Precision: 0.9649122807017544
+Recall: 0.859375
+fbeta: 0.9090909090909092
+Accuracy: 0.965560425798372
+----------
+Farming-fishing
+Precision: 0.9702970297029703
+Recall: 0.8521739130434782
+fbeta: 0.9074074074074073
+Accuracy: 0.9798792756539235
+----------
+Machine-op-inspct
+Precision: 0.9517543859649122
+Recall: 0.868
+fbeta: 0.9079497907949791
+Accuracy: 0.978021978021978
+----------
+Tech-support
+Precision: 0.9640287769784173
+Recall: 0.9469964664310954
+fbeta: 0.9554367201426025
+Accuracy: 0.9730603448275862
+----------
+?
+Precision: 0.9597701149425287
+Recall: 0.8743455497382199
+fbeta: 0.9150684931506848
+Accuracy: 0.9831795984807379
+----------
+Protective-serv
+Precision: 0.9483568075117371
+Recall: 0.957345971563981
+fbeta: 0.9528301886792453
+Accuracy: 0.9691833590138675
+----------
+Armed-Forces
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0
+Accuracy: 1.0
+----------
+Priv-house-serv
+Precision: 1.0
+Recall: 1.0
+fbeta: 1.0
+Accuracy: 1.0
+----------
