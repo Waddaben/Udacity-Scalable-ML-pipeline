@@ -75,4 +75,4 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * Write a script that uses the requests module to do one POST on your live API.
 
 ## Link to github repository
-* https://github.com/Waddaben/Udacity-Scalable-ML-pipeline
+* https://github.com/Waddaben/Udacity-Scalable-ML-pipelines
